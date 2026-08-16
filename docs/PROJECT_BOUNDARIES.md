@@ -1,16 +1,46 @@
 # Project Boundaries
 
-## What belongs to Qnty
+## Target durable role
 
-Qnty is the **research / falsification layer**. It contains:
+Qnty is the intended downstream consumer and acceptance boundary for an earned
+immutable handoff or promotion-candidate artifact. Its durable target role is:
 
-- Deterministic paper-replay engines
-- Kill criteria and validation receipts
-- Shadow-observation workflows
-- Backtest and diagnostic harnesses
+- downstream acceptance / rejection
+- deterministic replay
+- accounting
+- execution realism
+- paper controls
+- shadow controls
+- live or external-effect controls only when separately authorized
+
+`QNTY_HANDOFF_CREATED` is not `QNTY_HANDOFF_ACCEPTED`. Qnty's acceptance
+decision is independent, immutable, and does not rewrite QntyLab's research
+history or source artifact.
+
+## Current implementation and overlap classification
+
+The existing research, replay, and falsification machinery is preserved. This
+architecture alignment does not delete, rename, or refactor it. Based on the
+current code and contracts, the overlap is classified as:
+
+- `STILL_ACTIVE_ARCHITECTURE` — deterministic replay, accounting, execution
+  realism, paper controls, and shadow controls already present in Qnty.
+- `INTENTIONAL_DEFENSE_IN_DEPTH` — downstream checks that independently replay
+  or falsify an incoming artifact before accepting it.
+- `TRANSITIONAL_RESPONSIBILITY` — upstream-style research and falsification
+  workflows that remain co-located until a separately authorized migration or
+  ownership decision.
+- `LEGACY_COMPATIBILITY` — historical integration and protocol surfaces kept
+  for compatibility and evidence continuity.
+
+These labels describe current implementation versus target ownership; they do
+not authorize a migration, acceptance, execution, or runtime transition.
 
 ## What does NOT belong to Qnty
 
+- QntyLab's upstream hypothesis registration, scientific contract ownership,
+  research ledger, Jigsaw evidence ownership, survivor qualification, or
+  promotion-candidate construction.
 - **Franken** is a separate paper-flow / reconciliation shell.
 - **THT0** is a separate strategy stack.
 
